@@ -26,15 +26,8 @@
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', Georgia, serif;
-      overflow: hidden;
-      position: relative;
-    }
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       position: relative;
     }
 
@@ -242,10 +235,19 @@
     }
 
     .scene.open .letter-wrap {
-      pointer-events: auto;
-      z-index: 20;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
     }
 
+    .scene.open .letter {
+    transform: scale(1);
+    opacity: 1;
+    }
+    
     .letter {
       width: 300px;
       background: #fffdf8;
@@ -345,8 +347,16 @@
     }
 
     .scene.open .letter {
-      transform: translateY(-240px) scale(1);
-      opacity: 1;
+    transform: translateY(-120px) scale(1);
+    opacity: 1;
+    }
+
+    .envelope-wrap {
+    transition: transform 0.7s ease;
+    }
+
+    .scene.open .envelope-wrap {
+    transform: translateY(250px);
     }
 
     .scene.open .hint {
@@ -392,22 +402,22 @@
         <div class="letter-salutation">Mi amor,</div>
 
         <!-- ✏️ EDITÁ EL TEXTO AQUÍ ABAJO -->
-        <div class="letter-body">Hay personas que llegan a tu vida
-y la cambian sin avisar.
-Tú eres una de ellas.
+        <div class="letter-body">
+          Delfi:
+          No se por donde empezar. Soy horrible escribiendo cartas.
+          No porque no sepa escrivir ?) . Sino porque me cuesta
+          limitar en palabras los sentimientos que me llenan
+          el alma desde el día que te conocí.
 
-Gracias por cada sonrisa,
-por cada momento compartido,
-y por hacerme sentir
-que el mundo tiene más color
-cuando estás cerca.
+          Sos la persona que más sonrisas me saca.
+          Sos la persona que mas espero ver durante toda la semana.
+          Sos la persona con la que quiero pasar toda mi vida.
 
-Te quiero más de lo que
-las palabras pueden decir.</div>
+          Te amo
+        </div>
         <!-- ✏️ FIN DEL TEXTO A EDITAR -->
 
-        <div class="letter-closing">Con todo mi cariño,</div>
-        <div class="letter-signature">Tu persona especial</div>
+        <div class="letter-signature">Tu pepi</div>
         <div class="letter-hearts">♥ ♥ ♥</div>
       </div>
     </div>
