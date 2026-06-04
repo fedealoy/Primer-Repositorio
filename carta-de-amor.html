@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6ec;
+      --parchment: #f5e8d0;
+      --deep: #3b2314;
+      --ink: #5c3320;
+      --rose: #c0574a;
+      --gold: #b8862a;
+      --shadow: rgba(59, 35, 20, 0.18);
+    }
+
+    body {
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo decorativo con pétalos */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(192, 87, 74, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(184, 134, 42, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(245, 232, 208, 0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Pétalos flotantes */
+    .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .petal {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      background: rgba(192, 87, 74, 0.25);
+      border-radius: 100% 0 100% 0;
+      animation: falling linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes falling {
+      0%   { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+    }
+
+    /* Escenario */
+    .scene {
+      position: relative;
+      z-index: 10;
+      perspective: 900px;
+      width: 320px;
+    }
+
+    /* Sobre */
+    .envelope-wrap {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .envelope {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      transition: transform 0.2s ease;
+    }
+
+    .envelope:hover { transform: scale(1.03); }
+    .envelope:active { transform: scale(0.98); }
+
+    .env-body {
+      position: absolute;
+      inset: 0;
+      background: var(--parchment);
+      border-radius: 4px;
+      box-shadow:
+        0 8px 32px var(--shadow),
+        0 2px 8px rgba(59,35,20,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+      border: 1px solid rgba(184, 134, 42, 0.3);
+      overflow: hidden;
+    }
+
+    /* Líneas decorativas del sobre */
+    .env-body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 18px,
+          rgba(184, 134, 42, 0.06) 18px,
+          rgba(184, 134, 42, 0.06) 19px
+        );
+    }
+
+    /* Triángulo tapa */
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
+      background: #eedfc2;
+      border-bottom: 1px solid rgba(184,134,42,0.2);
+      transform-origin: top center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
+    }
+
+    .env-flap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 12px solid rgba(184, 134, 42, 0.15);
+    }
+
+    /* Triángulos laterales del sobre */
+    .env-left, .env-right, .env-bottom {
+      position: absolute;
+      z-index: 1;
+    }
+    .env-left {
+      bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-bottom: 110px solid #e8d5b8;
+      border-right: 160px solid transparent;
+    }
+    .env-right {
+      bottom: 0; right: 0;
+      width: 0; height: 0;
+      border-bottom: 110px solid #dfc9a8;
+      border-left: 160px solid transparent;
+    }
+    .env-bottom {
+      bottom: 0; left: 0; right: 0;
+      height: 110px;
+      background: #e8d5b8;
+    }
+
+    /* Sello y corazón */
+    .seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 52px;
+      height: 52px;
+      background: var(--rose);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(192, 87, 74, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .envelope:hover .seal {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 4px 20px rgba(192, 87, 74, 0.5);
+    }
+
+    .seal svg {
+      width: 26px;
+      height: 26px;
+      fill: white;
+    }
+
+    /* Texto de instrucción */
+    .hint {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--gold);
+      font-style: italic;
+      letter-spacing: 0.03em;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50%       { opacity: 1; }
+    }
+
+    /* === CARTA === */
+    .letter-wrap {
+      position: absolute;
+      top: 0; left: 0;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .letter {
+      width: 300px;
+      background: #fffdf8;
+      border-radius: 3px;
+      padding: 28px 26px 32px;
+      box-shadow:
+        0 2px 16px rgba(59,35,20,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid rgba(184, 134, 42, 0.2);
+      transform: translateY(90px) scale(0.88);
+      opacity: 0;
+      transition:
+        transform 0.7s cubic-bezier(0.34, 1.3, 0.64, 1),
+        opacity 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Líneas de papel */
+    .letter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(184, 134, 42, 0.1) 31px,
+        rgba(184, 134, 42, 0.1) 32px
+      );
+      background-position: 0 60px;
+      pointer-events: none;
+    }
+
+    .letter-ornament {
+      text-align: center;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 38px;
+      color: var(--rose);
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+
+    .letter-date {
+      text-align: right;
+      font-size: 12px;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .letter-salutation {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 26px;
+      color: var(--rose);
+      margin-bottom: 12px;
+    }
+
+    .letter-body {
+      font-size: 15.5px;
+      line-height: 2;
+      color: var(--ink);
+      font-weight: 300;
+      white-space: pre-line;
+    }
+
+    .letter-closing {
+      margin-top: 20px;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 22px;
+      color: var(--ink);
+    }
+
+    .letter-signature {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 30px;
+      color: var(--rose);
+      margin-top: 2px;
+    }
+
+    /* Decoración corazones pequeños en la carta */
+    .letter-hearts {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(192, 87, 74, 0.45);
+      letter-spacing: 6px;
+    }
+
+    /* === Estados abierto/cerrado === */
+    .scene.open .env-flap {
+      transform: rotateX(-180deg);
+    }
+
+    .scene.open .letter-wrap {
+      pointer-events: auto;
+    }
+
+    .scene.open .letter {
+      transform: translateY(-260px) scale(1);
+      opacity: 1;
+    }
+
+    .scene.open .hint {
+      opacity: 0;
+    }
+
+    /* Botón cerrar */
+    .close-btn {
+      display: none;
+      margin-top: 12px;
+      background: none;
+      border: 1px solid rgba(184, 134, 42, 0.4);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      padding: 6px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .close-btn:hover {
+      background: rgba(184, 134, 42, 0.08);
+    }
+
+    .scene.open .close-btn { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Pétalos flotantes -->
+  <div class="petals" id="petals"></div>
+
+  <div class="scene" id="scene">
+    <!-- Carta (detrás del sobre) -->
+    <div class="letter-wrap">
+      <div class="letter">
+        <div class="letter-ornament">♡</div>
+        <div class="letter-date">Junio, 2025</div>
+
+        <div class="letter-salutation">Mi amor,</div>
+
+        <!-- ✏️ EDITÁ EL TEXTO AQUÍ ABAJO -->
+        <div class="letter-body">Hay personas que llegan a tu vida
+y la cambian sin avisar.
+Tú eres una de ellas.
+
+Gracias por cada sonrisa,
+por cada momento compartido,
+y por hacerme sentir
+que el mundo tiene más color
+cuando estás cerca.
+
+Te quiero más de lo que
+las palabras pueden decir.</div>
+        <!-- ✏️ FIN DEL TEXTO A EDITAR -->
+
+        <div class="letter-closing">Con todo mi cariño,</div>
+        <div class="letter-signature">Tu persona especial</div>
+        <div class="letter-hearts">♥ ♥ ♥</div>
+      </div>
+    </div>
+
+    <!-- Sobre -->
+    <div class="envelope-wrap" id="envelopeWrap">
+      <div class="envelope" id="envelope">
+        <div class="env-body"></div>
+        <div class="env-bottom"></div>
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-flap"></div>
+        <div class="seal">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint">Toca para abrir ✦</div>
+    <button class="close-btn" id="closeBtn">cerrar carta</button>
+  </div>
+
+  <script>
+    // Pétalos
+    const petalContainer = document.getElementById('petals');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = (6 + Math.random() * 8) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      p.style.width = (7 + Math.random() * 8) + 'px';
+      p.style.height = (10 + Math.random() * 10) + 'px';
+      p.style.opacity = 0;
+      p.style.transform = `rotate(${Math.random()*360}deg)`;
+      petalContainer.appendChild(p);
+    }
+
+    // Abrir / cerrar carta
+    const scene = document.getElementById('scene');
+    const wrap  = document.getElementById('envelopeWrap');
+    const close = document.getElementById('closeBtn');
+    let isOpen  = false;
+
+    wrap.addEventListener('click', () => {
+      if (!isOpen) { isOpen = true; scene.classList.add('open'); }
+    });
+
+    close.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen = false;
+      scene.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
