@@ -249,7 +249,9 @@
     }
     
     .letter {
-      width: 300px;
+      width: 280px;
+      max-height: 70vh;
+      overflow-y: auto;
       background: #fffdf8;
       border-radius: 3px;
       padding: 22px 22px 26px;
@@ -346,17 +348,12 @@
       pointer-events: auto;
     }
 
-    .scene.open .letter {
-    transform: translateY(-120px) scale(1);
-    opacity: 1;
-    }
-
     .envelope-wrap {
     transition: transform 0.7s ease;
     }
 
     .scene.open .envelope-wrap {
-    transform: translateY(250px);
+    transform: translateY(350px);
     }
 
     .scene.open .hint {
@@ -397,23 +394,18 @@
     <div class="letter-wrap">
       <div class="letter">
         <div class="letter-ornament">♡</div>
-        <div class="letter-date">Junio, 2025</div>
-
-        <div class="letter-salutation">Mi amor,</div>
 
         <!-- ✏️ EDITÁ EL TEXTO AQUÍ ABAJO -->
-        <div class="letter-body">
+          <div class="letter-body">
           Delfi:
           No se por donde empezar. Soy horrible escribiendo cartas.
-          No porque no sepa escrivir ?) . Sino porque me cuesta
-          limitar en palabras los sentimientos que me llenan
-          el alma desde el día que te conocí.
+          No porque no sepa escrivir ?) . Sino porque me cuesta limitar en palabras los sentimientos que me llenan el alma desde el día que te conocí.
 
           Sos la persona que más sonrisas me saca.
           Sos la persona que mas espero ver durante toda la semana.
           Sos la persona con la que quiero pasar toda mi vida.
 
-          Te amo
+          Te amo,
         </div>
         <!-- ✏️ FIN DEL TEXTO A EDITAR -->
 
@@ -439,7 +431,6 @@
     </div>
 
     <div class="hint">Toca para abrir ✦</div>
-    <button class="close-btn" id="closeBtn">cerrar carta</button>
   </div>
 
   <script>
@@ -461,17 +452,16 @@
     // Abrir / cerrar carta
     const scene = document.getElementById('scene');
     const wrap  = document.getElementById('envelopeWrap');
-    const close = document.getElementById('closeBtn');
     let isOpen  = false;
 
     wrap.addEventListener('click', () => {
-      if (!isOpen) { isOpen = true; scene.classList.add('open'); }
-    });
+    isOpen = !isOpen;
 
-    close.addEventListener('click', (e) => {
-      e.stopPropagation();
-      isOpen = false;
-      scene.classList.remove('open');
+    if (isOpen) {
+        scene.classList.add('open');
+    } else {
+        scene.classList.remove('open');
+    }
     });
   </script>
 </body>
