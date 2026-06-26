@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Una historia de aniversario hecha para descubrirse de a poco." />
+  <title>Nuestra historia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="lock-screen" id="lockScreen" aria-label="Pantalla de apertura">
+    <div class="lock-content">
+      <div class="lock-icon" id="lockIcon" aria-hidden="true">🔒</div>
+      <p class="lock-kicker">Hay historias que no se cuentan.</p>
+      <p class="lock-title">Se descubren.</p>
+      <button class="key-button" id="openStory" type="button">
+        <span class="key-shine" aria-hidden="true"></span>
+        Abrir nuestra historia
+      </button>
+    </div>
+  </div>
+
+  <main class="site-shell" id="siteShell">
+    <section class="hero section" id="inicio" aria-label="Inicio">
+      <img class="hero-image parallax-image" src="assets/photos/hero.jpg" alt="Un recuerdo de nuestra historia" />
+      <div class="hero-fallback" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="particles" id="particles" aria-hidden="true"></div>
+
+      <div class="hero-content reveal">
+        <p class="eyebrow">Nuestra historia</p>
+        <h1>Para la persona que cambió mi vida.</h1>
+        <a class="scroll-cue" href="#carta" aria-label="Deslizar para comenzar">
+          <span>Deslizá para comenzar</span>
+          <span class="arrow-down" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="letter-section section" id="carta" aria-labelledby="letter-title">
+      <div class="section-inner narrow">
+        <article class="letter-card reveal">
+          <p class="letter-label" id="letter-title">Una carta breve</p>
+          <p>
+            Si pudiera resumir estos años en una palabra,<br />
+            tampoco podría.
+          </p>
+          <p>
+            Porque fueron cientos de momentos<br />
+            que hicieron que hoy estemos acá.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="timeline-section section" id="recuerdos" aria-labelledby="timeline-title">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Capítulos</p>
+          <h2 id="timeline-title">Momentos que todavía brillan.</h2>
+        </div>
+
+        <div class="timeline" aria-label="Línea de tiempo de recuerdos">
+          <article class="memory-card reveal timeline-item">
+            <div class="memory-media">
+              <img src="assets/photos/photo1.jpg" alt="Primer recuerdo juntos" />
+            </div>
+            <div class="memory-copy">
+              <time datetime="2025-08-14">14 agosto 2025</time>
+              <h3>El comienzo</h3>
+              <p>Ese instante donde algo simple empezó a sentirse distinto, como si el mundo hubiera bajado el volumen para dejarnos escuchar.</p>
+            </div>
+          </article>
+
+          <article class="memory-card reveal timeline-item">
+            <div class="memory-media">
+              <img src="assets/photos/photo2.jpg" alt="Una salida especial" />
+            </div>
+            <div class="memory-copy">
+              <time datetime="2025-09-03">3 septiembre 2025</time>
+              <h3>La primera aventura</h3>
+              <p>Caminamos sin apuro, nos reímos por cualquier cosa y descubrí que estar con vos podía convertir un día común en algo inolvidable.</p>
+            </div>
+          </article>
+
+          <article class="memory-card reveal timeline-item">
+            <div class="memory-media">
+              <img src="assets/photos/photo3.jpg" alt="Un detalle pequeño y especial" />
+            </div>
+            <div class="memory-copy">
+              <time datetime="2025-10-18">18 octubre 2025</time>
+              <h3>El detalle mínimo</h3>
+              <p>No fue grande ni perfecto. Fue mejor: fue nuestro. Una prueba de que el amor también vive en lo que casi nadie más nota.</p>
+            </div>
+          </article>
+
+          <article class="memory-card reveal timeline-item">
+            <div class="memory-media">
+              <img src="assets/photos/photo4.jpg" alt="Una noche memorable" />
+            </div>
+            <div class="memory-copy">
+              <time datetime="2025-12-24">24 diciembre 2025</time>
+              <h3>La noche luminosa</h3>
+              <p>Hubo luces, ruido, abrazos, y aun así mi parte favorita fue mirarte y sentir que todo estaba exactamente donde tenía que estar.</p>
+            </div>
+          </article>
+
+          <article class="memory-card reveal timeline-item">
+            <div class="memory-media">
+              <img src="assets/photos/photo5.jpg" alt="Un recuerdo tranquilo" />
+            </div>
+            <div class="memory-copy">
+              <time datetime="2026-02-14">14 febrero 2026</time>
+              <h3>Lo cotidiano</h3>
+              <p>Aprendí que la magia no siempre llega con fuegos artificiales. A veces llega en una charla, una mirada y una paz difícil de explicar.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section section" id="galeria" aria-labelledby="gallery-title">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Instantes</p>
+          <h2 id="gallery-title">Una galería para volver.</h2>
+        </div>
+
+        <div class="masonry-gallery" aria-label="Galería de fotos">
+          <figure class="gallery-item tall reveal"><img src="assets/photos/photo6.jpg" alt="Recuerdo de la galería 1" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/photos/photo7.jpg" alt="Recuerdo de la galería 2" /></figure>
+          <figure class="gallery-item wide reveal"><img src="assets/photos/photo8.jpg" alt="Recuerdo de la galería 3" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/photos/photo9.jpg" alt="Recuerdo de la galería 4" /></figure>
+          <figure class="gallery-item tall reveal"><img src="assets/photos/photo10.jpg" alt="Recuerdo de la galería 5" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/photos/photo11.jpg" alt="Recuerdo de la galería 6" /></figure>
+          <figure class="gallery-item wide reveal"><img src="assets/photos/photo12.jpg" alt="Recuerdo de la galería 7" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/photos/photo13.jpg" alt="Recuerdo de la galería 8" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="counter-section section" id="contador" aria-labelledby="counter-title">
+      <div class="section-inner">
+        <div class="counter-card reveal">
+          <p class="eyebrow">Desde el 14 de agosto de 2025, 21:00</p>
+          <h2 id="counter-title">El tiempo también aprendió tu nombre.</h2>
+          <div class="heart-pulse" aria-hidden="true">❤️</div>
+
+          <div class="counter-grid" id="relationshipCounter" aria-live="polite">
+            <div class="counter-unit"><strong data-counter="years">0</strong><span>Años</span></div>
+            <div class="counter-unit"><strong data-counter="months">0</strong><span>Meses</span></div>
+            <div class="counter-unit"><strong data-counter="days">0</strong><span>Días</span></div>
+            <div class="counter-unit"><strong data-counter="hours">0</strong><span>Horas</span></div>
+            <div class="counter-unit"><strong data-counter="minutes">0</strong><span>Minutos</span></div>
+            <div class="counter-unit"><strong data-counter="seconds">0</strong><span>Segundos</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surprise-section section" id="sorpresa" aria-labelledby="surprise-title">
+      <div class="section-inner narrow">
+        <div class="surprise-panel reveal">
+          <p class="eyebrow">Una última página</p>
+          <h2 id="surprise-title">No termina acá.</h2>
+          <button class="surprise-button" id="surpriseButton" type="button">No termina acá.</button>
+          <p class="surprise-message" id="surpriseMessage">Mirá dentro de la cajita ❤️</p>
+        </div>
+      </div>
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
