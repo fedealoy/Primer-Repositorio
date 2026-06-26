@@ -185,8 +185,9 @@ p {
   place-items: center;
   padding: 28px;
   background:
-    radial-gradient(circle at 50% 38%, rgba(233, 221, 248, 0.98), rgba(255, 255, 255, 0.94) 31%, rgba(120, 96, 168, 0.2) 100%),
-    linear-gradient(135deg, #ffffff, var(--violet-soft));
+    radial-gradient(circle at 50% 38%, rgba(248, 245, 255, 0.96) 0%, rgba(233, 221, 248, 0.9) 34%, rgba(169, 136, 216, 0.34) 100%),
+    radial-gradient(circle at 18% 18%, rgba(169, 136, 216, 0.28), transparent 34%),
+    linear-gradient(135deg, #f7f2ff 0%, #eadff8 52%, #d9c7f1 100%);
   transition:
     opacity 900ms var(--ease),
     visibility 900ms var(--ease),
@@ -200,7 +201,7 @@ p {
   aspect-ratio: 1;
   border: 1px solid rgba(192, 192, 192, 0.38);
   border-radius: 50%;
-  box-shadow: inset 0 0 80px rgba(222, 210, 244, 0.35);
+  box-shadow: inset 0 0 90px rgba(169, 136, 216, 0.28);
 }
 
 .lock-screen.is-open {
@@ -608,10 +609,9 @@ p {
 .counter-section {
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.18), transparent 30%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(234, 241, 251, 0.84)),
-    linear-gradient(180deg, #7564aa 0%, #e9e8f8 36%, #dce8f7 62%, #516f9f 100%),
-    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.2), transparent 30%);
+    radial-gradient(circle at 24% 22%, rgba(233, 221, 248, 0.34), transparent 32%),
+    radial-gradient(circle at 76% 78%, rgba(234, 241, 251, 0.22), transparent 34%),
+    linear-gradient(180deg, var(--violet-deep) 0%, #7564aa 30%, #6574a9 68%, #516f9f 100%);
 }
 
 .counter-card {
