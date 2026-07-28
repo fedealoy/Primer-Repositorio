@@ -49,6 +49,10 @@ body.is-locked {
   overflow: hidden;
 }
 
+body.is-modal-open {
+  overflow: hidden;
+}
+
 body::selection,
 ::selection {
   color: var(--black);
@@ -698,28 +702,145 @@ p {
   text-align: center;
 }
 
-.surprise-message {
-  max-height: 0;
-  margin: 0;
-  overflow: hidden;
-  color: #111111;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-weight: 610;
-  line-height: 1.2;
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 22px;
   opacity: 0;
-  transform: translateY(16px);
+  visibility: hidden;
+  pointer-events: none;
   transition:
-    max-height 700ms var(--ease),
-    margin 700ms var(--ease),
-    opacity 700ms var(--ease),
-    transform 700ms var(--ease);
+    opacity 420ms var(--ease),
+    visibility 420ms var(--ease);
 }
 
-.surprise-message.is-visible {
-  max-height: 160px;
-  margin-top: 38px;
+.pdf-modal[hidden] {
+  display: none;
+}
+
+.pdf-modal.is-open {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.pdf-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(233, 221, 248, 0.18), transparent 34%),
+    rgba(17, 17, 17, 0.58);
+  backdrop-filter: blur(18px);
+}
+
+.pdf-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 980px);
+  height: min(86vh, 760px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(192, 192, 192, 0.42);
+  border-radius: var(--radius-large);
+  box-shadow: 0 40px 120px rgba(17, 17, 17, 0.32);
+  backdrop-filter: blur(24px);
+  transform: translateY(22px) scale(0.98);
+  transition: transform 420ms var(--ease);
+}
+
+.pdf-modal.is-open .pdf-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.pdf-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid rgba(192, 192, 192, 0.24);
+}
+
+.pdf-dialog-header .eyebrow {
+  margin-bottom: 8px;
+}
+
+.pdf-dialog-header h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+}
+
+.pdf-close-button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(192, 192, 192, 0.46);
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08);
+  font-size: 1.8rem;
+  line-height: 1;
+  transition:
+    transform 220ms var(--ease),
+    box-shadow 220ms var(--ease);
+}
+
+.pdf-close-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(17, 17, 17, 0.12);
+}
+
+.pdf-close-button:focus-visible {
+  outline: 3px solid rgba(169, 136, 216, 0.95);
+  outline-offset: 4px;
+}
+
+.pdf-viewer {
+  position: relative;
+  min-height: 0;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(169, 136, 216, 0.16), transparent 32%),
+    linear-gradient(135deg, #f7f2ff, #eaf1fb);
+}
+
+.pdf-viewer iframe {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+.pdf-empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px;
+  text-align: center;
+}
+
+.pdf-empty-state p {
+  margin-bottom: 0;
+  color: #111111;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 620;
+}
+
+.pdf-empty-state span {
+  color: #756b82;
+  font-size: 0.9rem;
 }
 
 .confetti-layer {
@@ -929,6 +1050,24 @@ p {
 
   .counter-unit {
     padding: 18px 8px;
+  }
+
+  .pdf-modal {
+    padding: 12px;
+  }
+
+  .pdf-dialog {
+    height: min(88vh, 720px);
+    border-radius: 20px;
+  }
+
+  .pdf-dialog-header {
+    padding: 18px 18px 14px;
+  }
+
+  .pdf-close-button {
+    width: 38px;
+    height: 38px;
   }
 }
 
