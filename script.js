@@ -5,8 +5,10 @@ const siteShell = document.querySelector("#siteShell");
 const particlesLayer = document.querySelector("#particles");
 const heroImage = document.querySelector(".parallax-image");
 const surpriseButton = document.querySelector("#surpriseButton");
-const surpriseMessage = document.querySelector("#surpriseMessage");
 const confettiLayer = document.querySelector("#confettiLayer");
+const pdfModal = document.querySelector("#pdfModal");
+const surprisePdf = document.querySelector("#surprisePdf");
+const closePdfButtons = document.querySelectorAll("[data-close-pdf]");
 const counterElements = {
   years: document.querySelector('[data-counter="years"]'),
   months: document.querySelector('[data-counter="months"]'),
@@ -187,13 +189,51 @@ function launchConfetti() {
   }, 4600);
 }
 
-surpriseButton.addEventListener("click", () => {
-  launchConfetti();
-  surpriseButton.disabled = true;
+function openPdfModal() {
+  if (!pdfModal || !surprisePdf) return;
+
+  const pdfSource = surprisePdf.dataset.pdfSrc;
+
+  if (pdfSource && !surprisePdf.src) {
+    surprisePdf.src = pdfSource;
+  }
+
+  pdfModal.hidden = false;
+  pdfModal.classList.add("is-open");
+  pdfModal.setAttribute("aria-hidden", "false");
+  body.classList.add("is-modal-open");
+}
+
+function closePdfModal() {
+  if (!pdfModal) return;
+
+  pdfModal.classList.remove("is-open");
+  pdfModal.setAttribute("aria-hidden", "true");
+  body.classList.remove("is-modal-open");
 
   window.setTimeout(() => {
-    surpriseMessage.classList.add("is-visible");
-  }, 900);
+    if (!pdfModal.classList.contains("is-open")) {
+      pdfModal.hidden = true;
+    }
+  }, 420);
+}
+
+surpriseButton.addEventListener("click", () => {
+  launchConfetti();
+
+  window.setTimeout(() => {
+    openPdfModal();
+  }, 650);
+});
+
+closePdfButtons.forEach(button => {
+  button.addEventListener("click", closePdfModal);
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && pdfModal?.classList.contains("is-open")) {
+    closePdfModal();
+  }
 });
 
 createParticles();
