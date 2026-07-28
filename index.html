@@ -42,10 +42,10 @@
         <article class="letter-card reveal">
           <p class="letter-label" id="letter-title">Cartita jeje</p>
           <p>
-            No me van a alcanzar las palabras para describir lo que fue nuestro año.<br />
+            No me van a alcanzar las palabras para describir lo que fue nuestro año. Mil idas y vueltas: Pilar, Hurlingham, Capital. Taylor, Tenis, Star Wars. Cenas, Bares, Asados. Mil planes y momentos que hicieron de este año super especial. Por qué? Porque cada uno de ellos fue con vos. No hay nada en la vida que supere esa sensación de agitación y felicidad que siento justo antes de verte, ni esa calma que me regala cada abrazo tuyo<br />
           </p>
           <p>
-            Por eso creé este espacio, para mostrartelo 🥹<br />
+            Por todo eso creé este espacio, para que sirva de mini ventanita de nuestro primer año 🥹<br />
           </p>
         </article>
       </div>
@@ -54,7 +54,7 @@
     <section class="timeline-section section" id="recuerdos" aria-labelledby="timeline-title">
       <div class="section-inner">
         <div class="section-heading reveal">
-          <p class="eyebrow">Capítulos</p>
+          <p class="eyebrow">Fotiños</p>
           <h2 id="timeline-title">Nuestros momentos mi amorrrr.</h2>
         </div>
 
@@ -198,12 +198,36 @@
           <p class="eyebrow">Y esto...</p>
           <h2 id="surprise-title">No termina acá</h2>
           <button class="surprise-button" id="surpriseButton" type="button">Surprise ❤️</button>
-          <p class="surprise-message" id="surpriseMessage">Mirá dentro de la cajita ❤️</p>
         </div>
       </div>
       <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
     </section>
   </main>
+
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
+    <div class="pdf-modal-backdrop" data-close-pdf></div>
+    <section class="pdf-dialog" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+      <div class="pdf-dialog-header">
+        <div>
+          <p class="eyebrow">Surprise</p>
+          <h2 id="pdfModalTitle">Una última cosita</h2>
+        </div>
+        <button class="pdf-close-button" type="button" aria-label="Cerrar PDF" data-close-pdf>×</button>
+      </div>
+
+      <div class="pdf-viewer">
+        <iframe
+          id="surprisePdf"
+          title="PDF sorpresa"
+          data-pdf-src="assets/pdf/surprise.pdf"
+        ></iframe>
+        <div class="pdf-empty-state">
+          <p>Cuando subas el PDF, va a aparecer acá.</p>
+          <span>Usá la ruta: assets/pdf/surprise.pdf</span>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <script src="script.js"></script>
 </body>
