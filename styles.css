@@ -630,8 +630,9 @@ p {
 
 .profiles-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 420px));
+  justify-content: center;
+  gap: 22px;
 }
 
 .profile-card {
@@ -653,7 +654,7 @@ p {
 }
 
 .profile-photo {
-  height: clamp(260px, 34vw, 380px);
+  height: clamp(190px, 24vw, 260px);
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.42), transparent 34%),
@@ -1181,7 +1182,7 @@ p {
   }
 
   .profile-photo {
-    height: 260px;
+    height: 210px;
   }
 
   .profile-description {
