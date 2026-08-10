@@ -653,7 +653,7 @@ p {
 }
 
 .profile-photo {
-  aspect-ratio: 4 / 5;
+  height: clamp(260px, 34vw, 380px);
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.42), transparent 34%),
@@ -677,7 +677,7 @@ p {
 }
 
 .profile-copy {
-  padding: clamp(24px, 4vw, 34px);
+  padding: clamp(22px, 3vw, 30px);
 }
 
 .profile-label {
@@ -695,8 +695,8 @@ p {
 }
 
 .profile-description {
-  min-height: 86px;
-  margin-bottom: 26px;
+  min-height: 72px;
+  margin-bottom: 22px;
   color: #5e5868;
 }
 
@@ -710,7 +710,7 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 13px 14px;
+  padding: 11px 14px;
   background: rgba(255, 255, 255, 0.58);
   border: 1px solid rgba(192, 192, 192, 0.22);
   border-radius: 14px;
@@ -1181,7 +1181,7 @@ p {
   }
 
   .profile-photo {
-    aspect-ratio: 1 / 1;
+    height: 260px;
   }
 
   .profile-description {
